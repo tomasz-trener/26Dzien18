@@ -86,6 +86,13 @@ namespace P12MAUI.Client.ViewModels
             //_productDetailsView.Show();
             SelectedProduct = product;
             //_productDetailsView.DataContext = this;
+
+
+            await Shell.Current.GoToAsync(nameof(ProductDetailsView), true, new Dictionary<string, object>
+            {
+                {"Product",product },
+                {nameof(ProductsViewModel), this }
+            });
         }
 
 
