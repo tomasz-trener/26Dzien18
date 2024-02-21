@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="P12MAUI.Client.MainPage">
+             x:Class="P12MAUI.Client.MainPage"
+             xmlns:viewmodel="clr-namespace:P12MAUI.Client.ViewModels"
+             >
 
     <ScrollView>
         <VerticalStackLayout
@@ -39,8 +41,9 @@
                                 <Label Text="ReleaseDate:"></Label>
                                 <Label Text="{Binding ReleaseDate, StringFormat='{0: dd MM yyyy}'}"></Label>
                             </HorizontalStackLayout>
-                            <Button Command="{Binding DataContext.ShowDetailsCommand}" 
-                                    CommandParameter="{Binding}"
+                            <Button 
+                                  Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ProductsViewModel}}, Path=ShowDetailsCommand }" 
+                                   CommandParameter="{Binding}"
                                     Text="Edit"></Button>
                         </Grid>
                     </DataTemplate>
