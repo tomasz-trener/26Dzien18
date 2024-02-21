@@ -1,8 +1,8 @@
 ﻿1) Stworzlismy nowy projekt w MAUI 
 2) Przerobiliśmy kontrolki na zgodne z MAUI (Wczesniej były w WPF)
-3) Skopiowalismy ViewModel
+3) Skopiowalismy ViewModel z WPF
 	- Zbindowalismy Viewmodel z widokiem 
-4) Skonfigurowanie DI 
+4) Skonfigurowanie DI w MauiProgram.cs
 
 5) Dodalismy nawigację po stronach (page)
 	- w maui kady widok musi posiadać własny viewmodel (w aplikacji WPF nawaigacja byla zrobiona na zasadzie, ze kazdy widok miał wspólny viewmodel i po kliknieciu zmieniał się sam widok)

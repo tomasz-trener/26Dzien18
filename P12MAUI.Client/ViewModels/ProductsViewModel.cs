@@ -17,8 +17,7 @@ namespace P12MAUI.Client.ViewModels
         private readonly IProductService _productService;
         private readonly IMessageDialogService _messageDialogService;
         private readonly IConnectivity _connectivity;
-        //private readonly ProductDetailsView _productDetailsView;
-        //private readonly ISpeechService _speechService;
+    
 
         [ObservableProperty]
         private ObservableCollection<Product> _products;
@@ -29,8 +28,7 @@ namespace P12MAUI.Client.ViewModels
 
    
 
-        public ProductsViewModel(IProductService productService, IMessageDialogService messageDialogService, IConnectivity connectivity
-            /*ProductDetailsView productDetailsView*/  /*, ISpeechService speechService*/)
+        public ProductsViewModel(IProductService productService, IMessageDialogService messageDialogService, IConnectivity connectivity)
         {
             _productService = productService;
             _messageDialogService = messageDialogService;
@@ -66,10 +64,8 @@ namespace P12MAUI.Client.ViewModels
                 return;
             }
 
-
-            //_productDetailsView.Show();
             SelectedProduct = product;
-            //_productDetailsView.DataContext = this;
+      
 
 
             await Shell.Current.GoToAsync(nameof(ProductDetailsView), true, new Dictionary<string, object>
@@ -79,8 +75,6 @@ namespace P12MAUI.Client.ViewModels
             });
         }
 
-
-     
         [RelayCommand]
         public async Task New()
         {
@@ -90,9 +84,6 @@ namespace P12MAUI.Client.ViewModels
                 return;
             }
 
-
-            //_productDetailsView.Show();
-            //_productDetailsView.DataContext = this;
             SelectedProduct = new Product();
 
             await Shell.Current.GoToAsync(nameof(ProductDetailsView), true, new Dictionary<string, object>
@@ -102,24 +93,7 @@ namespace P12MAUI.Client.ViewModels
             });
         }
 
-        //[RelayCommand]
-        //public async Task RecognizeVoice()
-        //{
-        //    var text = await _speechService.RecognizeAsync();
-        //    //  SelectedProduct.Description = text;
-
-
-        //    SelectedProduct = new Product()
-        //    {
-        //        Id = _selectedProduct.Id,
-        //        Description = text,
-        //        Barcode = _selectedProduct.Barcode,
-        //        Title = _selectedProduct.Title,
-        //        Price = _selectedProduct.Price,
-        //        ReleaseDate = _selectedProduct.ReleaseDate
-        //    };
-
-        //}
+      
     }
 }
 

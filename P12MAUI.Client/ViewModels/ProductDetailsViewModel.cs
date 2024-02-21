@@ -58,10 +58,6 @@ namespace P12MAUI.Client.ViewModels
             
         }
 
-        //public bool CanDelete()
-        //{
-        //    return _selectedProduct != null && _selectedProduct.Id != 0;
-        //}
 
         [RelayCommand]
         public async Task Save()

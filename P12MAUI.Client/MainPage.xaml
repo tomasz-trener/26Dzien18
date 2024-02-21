@@ -18,39 +18,49 @@
             <CollectionView ItemsSource="{Binding Products}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            
-                            <!-- Pierwszy wiersz -->
-                            <HorizontalStackLayout Grid.Row="0">
-                                <Label Text="{Binding Id}"></Label>
-                                <Label Text="{Binding Title}"></Label>
-                            </HorizontalStackLayout>
+                        <Frame BackgroundColor="Red" Padding="10" Margin="5">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ProductsViewModel}}, Path=ShowDetailsCommand }" 
+                                     CommandParameter="{Binding}"
+                                    ></TapGestureRecognizer>
+                            </Frame.GestureRecognizers>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                </Grid.RowDefinitions>
 
-                            <!-- Drugi wiersz -->
-                            <Label Grid.Row="1" Text="{Binding Description}"></Label>
+                                <!-- Pierwszy wiersz -->
+                                <HorizontalStackLayout Grid.Row="0">
+                                    <Label Text="{Binding Id}"></Label>
+                                    <Label Text="{Binding Title}"></Label>
+                                </HorizontalStackLayout>
 
-                            <!-- Trzeci wiersz wiersz -->
-                            <HorizontalStackLayout Grid.Row="2">
-                                <Label Text="Barcode:"></Label>
-                                <Label Text="{Binding Barcode}"></Label>
+                                <!-- Drugi wiersz -->
+                                <Label Grid.Row="1" Text="{Binding Description}"></Label>
 
-                                <Label Text=" Price:"></Label>
-                                <Label Text="{Binding Price, StringFormat='{0} zł'}"></Label>
+                                <!-- Trzeci wiersz wiersz -->
+                                <HorizontalStackLayout Grid.Row="2">
+                                    <Label Text="Barcode:"></Label>
+                                    <Label Text="{Binding Barcode}"></Label>
 
-                                <Label Text=" ReleaseDate:"></Label>
-                                <Label Text="{Binding ReleaseDate, StringFormat='{0: dd MM yyyy}'}"></Label>
-                            </HorizontalStackLayout>
-                            <Button Grid.Row="3"
-                                  Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ProductsViewModel}}, Path=ShowDetailsCommand }" 
-                                   CommandParameter="{Binding}"
-                                    Text="Edit"></Button>
-                        </Grid>
+                                    <Label Text=" Price:"></Label>
+                                    <Label Text="{Binding Price, StringFormat='{0} zł'}"></Label>
+
+                                    <Label Text=" ReleaseDate:"></Label>
+                                    <Label Text="{Binding ReleaseDate, StringFormat='{0: dd MM yyyy}'}"></Label>
+                                </HorizontalStackLayout>
+                                <!--<Button Grid.Row="3"
+          Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ProductsViewModel}}, Path=ShowDetailsCommand }" 
+           CommandParameter="{Binding}"
+            Text="Edit"></Button>-->
+                            </Grid>
+                        </Frame>
+                        
+                        
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
