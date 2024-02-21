@@ -38,13 +38,11 @@ namespace P12MAUI.Client
 
         private static void ConfigureAppServices(IServiceCollection services, AppSettings appSettings)
         {
-            // tutaj konfigurujemy serwisy
-            //  services.AddSingleton<IAccuWeatherService, AccuWeatherService>(); 
-            //services.AddSingleton<IAccuWeatherService, FakeAccuWeatherService>(); // bo wystraczy nam tylko 1 serwis na cala aplikacje 
-          
+            services.AddSingleton<IConnectivity>(Connectivity.Current);
+
             services.AddSingleton<IProductService, ProductService>();
             services.AddSingleton<IMessageDialogService, MauiMessageDialogService>();
-            //services.AddSingleton<ISpeechService>(_ => new SpeechService(appSettings.SpeechSettings));
+           
         }
 
         private static void ConfigureViewModels(IServiceCollection services)

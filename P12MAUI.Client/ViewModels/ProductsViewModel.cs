@@ -16,6 +16,7 @@ namespace P12MAUI.Client.ViewModels
     {
         private readonly IProductService _productService;
         private readonly IMessageDialogService _messageDialogService;
+        private readonly IConnectivity _connectivity;
         //private readonly ProductDetailsView _productDetailsView;
         //private readonly ISpeechService _speechService;
 
@@ -28,19 +29,25 @@ namespace P12MAUI.Client.ViewModels
 
    
 
-        public ProductsViewModel(IProductService productService, IMessageDialogService messageDialogService 
+        public ProductsViewModel(IProductService productService, IMessageDialogService messageDialogService, IConnectivity connectivity
             /*ProductDetailsView productDetailsView*/  /*, ISpeechService speechService*/)
         {
             _productService = productService;
             _messageDialogService = messageDialogService;
-            //_productDetailsView = productDetailsView;
-            //_speechService = speechService;
+            _connectivity = connectivity;
 
             GetProductsAsync();
         }
 
         public async Task GetProductsAsync()
         {
+            if (_connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                _messageDialogService.ShowMessage("Internet not avaible!");
+                return;
+            }
+
+
             var result = await _productService.GetProductsAsync();
             if (result.Success)
             {
@@ -53,6 +60,13 @@ namespace P12MAUI.Client.ViewModels
         [RelayCommand]
         public async Task ShowDetails(Product product)
         {
+            if (_connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                _messageDialogService.ShowMessage("Internet not avaible!");
+                return;
+            }
+
+
             //_productDetailsView.Show();
             SelectedProduct = product;
             //_productDetailsView.DataContext = this;
@@ -70,6 +84,13 @@ namespace P12MAUI.Client.ViewModels
         [RelayCommand]
         public async Task New()
         {
+            if (_connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                _messageDialogService.ShowMessage("Internet not avaible!");
+                return;
+            }
+
+
             //_productDetailsView.Show();
             //_productDetailsView.DataContext = this;
             SelectedProduct = new Product();

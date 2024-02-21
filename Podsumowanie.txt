@@ -15,3 +15,4 @@
  - edytuj produkt
  - usuń produkt 
  - stwórz nowy produkt 
+
