@@ -16,3 +16,4 @@
  - usuń produkt 
  - stwórz nowy produkt 
 
+ 7) wstrzykneliśmy seriwsy do obsługi polaczenia internetowego, geolokaliacji i obslugi map 

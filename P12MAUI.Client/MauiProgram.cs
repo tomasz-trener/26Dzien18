@@ -39,6 +39,8 @@ namespace P12MAUI.Client
         private static void ConfigureAppServices(IServiceCollection services, AppSettings appSettings)
         {
             services.AddSingleton<IConnectivity>(Connectivity.Current);
+            services.AddSingleton<IGeolocation>(Geolocation.Default);
+            services.AddSingleton<IMap>(Map.Default);
 
             services.AddSingleton<IProductService, ProductService>();
             services.AddSingleton<IMessageDialogService, MauiMessageDialogService>();

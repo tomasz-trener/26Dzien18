@@ -17,11 +17,15 @@ namespace P12MAUI.Client.ViewModels
     {
         private readonly IProductService _productService;
         private readonly IMessageDialogService _messageDialogService;
+        private readonly IGeolocation _geolocation;
+        private readonly IMap _map;
         private ProductsViewModel _productsViewModel;
-        public ProductDetailsViewModel(IProductService productService, IMessageDialogService messageDialogService)
+        public ProductDetailsViewModel(IProductService productService, IMessageDialogService messageDialogService, IGeolocation geolocation, IMap map)
         {
             _productService = productService;
-            _messageDialogService= messageDialogService;
+            _messageDialogService = messageDialogService;
+            _geolocation = geolocation;
+            _map = map; 
         }
 
         [ObservableProperty]
