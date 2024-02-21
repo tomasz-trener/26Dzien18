@@ -9,3 +9,9 @@
 	- u nas nawaigacja jest zrobiona na zasadzie, ze kazdy widok ma swoj viewmodel i po kliknieciu w przycisk zmienia sie widok i viewmodel
 	- w aplikacji MAUI nie ma mozliwosci zeby jeden viewmodel był wspólny dla wielu widoków 
 	- trzbeba zarejestrowac siezki nawigacji w pliki AppShell.xaml.cs 
+
+6) Obsługujemy operacje:
+ - wyswietl szczegóły produktu 
+ - edytuj produkt
+ - usuń produkt 
+ - stwórz nowy produkt 
