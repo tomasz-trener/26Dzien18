@@ -3,3 +3,9 @@
 3) Skopiowalismy ViewModel
 	- Zbindowalismy Viewmodel z widokiem 
 4) Skonfigurowanie DI 
+
+5) Dodalismy nawigację po stronach (page)
+	- w maui kady widok musi posiadać własny viewmodel (w aplikacji WPF nawaigacja byla zrobiona na zasadzie, ze kazdy widok miał wspólny viewmodel i po kliknieciu zmieniał się sam widok)
+	- u nas nawaigacja jest zrobiona na zasadzie, ze kazdy widok ma swoj viewmodel i po kliknieciu w przycisk zmienia sie widok i viewmodel
+	- w aplikacji MAUI nie ma mozliwosci zeby jeden viewmodel był wspólny dla wielu widoków 
+	- trzbeba zarejestrowac siezki nawigacji w pliki AppShell.xaml.cs 

@@ -52,13 +52,14 @@ namespace P12MAUI.Client
             // tutaj konfigurujemy viewmodele
         
             services.AddSingleton<ProductsViewModel>();
+            services.AddSingleton<ProductDetailsViewModel>();
         }
 
         private static void ConfigureViews(IServiceCollection services)
         {
             // tutaj konfigurujemy widoki
-            services.AddTransient<MainPage>();
-
+            services.AddSingleton<MainPage>();
+            services.AddTransient<ProductDetailsView>();
         }
 
         private static void ConfigureHttpClients(IServiceCollection services, AppSettings appSettings)
