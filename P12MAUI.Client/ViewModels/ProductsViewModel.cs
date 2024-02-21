@@ -26,10 +26,7 @@ namespace P12MAUI.Client.ViewModels
         [ObservableProperty]
         private Product _selectedProduct;
 
-        partial void OnSelectedProductChanged(Product value)   
-        {
-            DeleteCommand.NotifyCanExecuteChanged();
-        }
+   
 
         public ProductsViewModel(IProductService productService, IMessageDialogService messageDialogService 
             /*ProductDetailsView productDetailsView*/  /*, ISpeechService speechService*/)
@@ -51,34 +48,7 @@ namespace P12MAUI.Client.ViewModels
             }
         }
 
-        public async Task CreateProductAsync()
-        {
-            var result = await _productService.CreateProductAsync(_selectedProduct);
-            if (result.Success)
-            {
-               await GetProductsAsync();
-            }
-            else
-            {
-                _messageDialogService.ShowMessage(result.Message);
-            }
-           
-        }
-
-         
-
-        public async Task UpdateProductAsync()
-        {
-            var result = await _productService.UpdateProductAsync(_selectedProduct);
-            if (result.Success)
-            {
-                await GetProductsAsync();
-            }
-            else
-            {
-                _messageDialogService.ShowMessage(result.Message);
-            }
-        }
+       
 
         [RelayCommand]
         public async Task ShowDetails(Product product)
@@ -96,41 +66,7 @@ namespace P12MAUI.Client.ViewModels
         }
 
 
-        [RelayCommand(CanExecute = nameof(CanDelete))]
-        public async Task Delete()
-        {
-            var result = await _productService.DeleteProductAsync(_selectedProduct.Id);
-            if (result.Success)
-            {
-               // _productDetailsView.Hide();
-                await GetProductsAsync();
-            }
-            else
-            {
-                _messageDialogService.ShowMessage(result.Message);
-            }
-        }
-
-        public bool CanDelete()
-        {
-            return _selectedProduct != null && _selectedProduct.Id != 0;
-        }
-
-        [RelayCommand]
-        public async Task Save()
-        {
-            if (_selectedProduct.Id==0)
-            {
-                // tworzymy nowy produkt 
-                await CreateProductAsync();
-            }
-            else
-            {
-                // aktualizujemy produkt
-                await UpdateProductAsync();
-            }
-        }
-
+     
         [RelayCommand]
         public async Task New()
         {

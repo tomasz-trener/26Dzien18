@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using P06Shop.Shared;
+using P06Shop.Shared.MessageBox;
 using P06Shop.Shared.Services.ProductService;
 using System;
 using System.Collections.Generic;
@@ -13,14 +15,95 @@ namespace P12MAUI.Client.ViewModels
     [QueryProperty(nameof(ProductsViewModel),nameof(ProductsViewModel))]
     public partial class ProductDetailsViewModel : ObservableObject
     {
-        IProductService _productService;
-        public ProductDetailsViewModel(IProductService productService)
+        private readonly IProductService _productService;
+        private readonly IMessageDialogService _messageDialogService;
+        private ProductsViewModel _productsViewModel;
+        public ProductDetailsViewModel(IProductService productService, IMessageDialogService messageDialogService)
         {
             _productService = productService;
+            _messageDialogService= messageDialogService;
         }
 
         [ObservableProperty]
         private Product product;
 
+        public ProductsViewModel ProductsViewModel
+        {
+            get { return _productsViewModel;}
+            set { _productsViewModel = value; }
+        }
+
+        [RelayCommand]
+        public async Task Delete()
+        {
+            await DeleteProduct();
+            await Shell.Current.GoToAsync("../", true);
+        }
+
+        public async Task DeleteProduct()
+        {
+            var result = await _productService.DeleteProductAsync(product.Id);
+            if (result.Success)
+            {
+                await _productsViewModel.GetProductsAsync();
+            }
+            else
+            {
+                _messageDialogService.ShowMessage(result.Message);
+            }
+            
+        }
+
+        //public bool CanDelete()
+        //{
+        //    return _selectedProduct != null && _selectedProduct.Id != 0;
+        //}
+
+        [RelayCommand]
+        public async Task Save()
+        {
+            if (product.Id == 0)
+            {
+                // tworzymy nowy produkt 
+                await CreateProductAsync();
+                
+            }
+            else
+            {
+                // aktualizujemy produkt
+                await UpdateProductAsync();
+            }
+
+            await Shell.Current.GoToAsync("../", true);
+        }
+
+        public async Task CreateProductAsync()
+        {
+            var result = await _productService.CreateProductAsync(product);
+            if (result.Success)
+            {
+                await _productsViewModel.GetProductsAsync();
+            }
+            else
+            {
+                _messageDialogService.ShowMessage(result.Message);
+            }
+
+        }
+
+
+
+        public async Task UpdateProductAsync()
+        {
+            var result = await _productService.UpdateProductAsync(product);
+            if (result.Success)
+            {
+                await _productsViewModel.GetProductsAsync();
+            }
+            else
+            {
+                _messageDialogService.ShowMessage(result.Message);
+            }
+        }
     }
 }
