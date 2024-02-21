@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="P12MAUI.Client.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+
+            <CollectionView ItemsSource="{Binding Products}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            
+                            <!-- Pierwszy wiersz -->
+                            <HorizontalStackLayout Grid.Row="0">
+                                <Label Text="{Binding Id}"></Label>
+                                <Label Text="{Binding Title}"></Label>
+                            </HorizontalStackLayout>
+
+                            <!-- Drugi wiersz -->
+                            <Label Grid.Row="1" Text="{Binding Description}"></Label>
+
+                            <!-- Trzeci wiersz wiersz -->
+                            <HorizontalStackLayout Grid.Row="2">
+                                <Label Text="Barcode:"></Label>
+                                <Label Text="{Binding Barcode}"></Label>
+
+                                <Label Text="Price:"></Label>
+                                <Label Text="{Binding Price, StringFormat='C'}"></Label>
+
+                                <Label Text="ReleaseDate:"></Label>
+                                <Label Text="{Binding ReleaseDate, StringFormat='{0: dd MM yyyy}'}"></Label>
+                            </HorizontalStackLayout>
+                            <Button Command="{Binding DataContext.ShowDetailsCommand}" 
+                                    CommandParameter="{Binding}"
+                                    Text="Edit"></Button>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            
+            
+            
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
